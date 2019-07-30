@@ -87,8 +87,17 @@
   (setq-local flycheck-check-syntax-automatically nil))
 (add-hook 'c-mode-common-hook #'my-flycheck-rtags-setup)
 
-(cmake-ide-setup)
 
+;;; shell script
+
+(add-to-list 'company-backends '(company-shell company-shell-env))
+(add-hook 'shell-script-mode 'company-mode)
+(add-hook 'shell-script-mode 'flycheck-mode)
+
+
+;; python
+
+(add-hook 'flycheck-mode-hook #'flycheck-pycheckers-setup)
 
 (provide '.emacs)
 ;;; .emacs ends here
