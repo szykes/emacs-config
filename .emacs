@@ -26,7 +26,7 @@
  '(json-reformat:indent-width 2)
  '(package-selected-packages
    (quote
-    (cmake-font-lock flycheck-pycheckers python-mode company-shell flycheck-rtags flycheck company lice cmake-project transient magit json-mode helm-rtags rtags helm dash))))
+    (cmake-font-lock flycheck-pycheckers python-mode company-shell flycheck-rtags flycheck company lice transient magit json-mode helm-rtags rtags helm dash))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -36,9 +36,11 @@
 
 ;;; emacs core related
 
+;; no need to have menubar
 (menu-bar-mode -1)
 
 ;; automatically save and restore sessions
+;; server-client usage is preferred
 (defvar desktop-dirname             "~/.emacs.d/desktop/")
 (defvar desktop-base-file-name      "emacs.desktop")
 (defvar desktop-base-lock-name      "lock")
@@ -55,6 +57,7 @@
 
 ;;; common
 
+;; default config, no magic is added
 (require 'helm-config)
 (helm-mode 1)
 (define-key global-map [remap find-file] 'helm-find-files)
@@ -119,6 +122,13 @@
 
 ;;; json
 (require 'json)
+
+
+;;; cmake
+
+;; default config, no magic is added
+(autoload 'cmake-font-lock-activate "cmake-font-lock" nil t)
+(add-hook 'cmake-mode-hook 'cmake-font-lock-activate)
 
 
 (provide '.emacs)
