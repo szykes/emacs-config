@@ -9,7 +9,7 @@
 (package-initialize)
 
 (custom-set-variables
- ;; custom-set-variables was added by Custom.
+ ;; `custom-set-variables' was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
@@ -26,13 +26,17 @@
  '(json-reformat:indent-width 2)
  '(package-selected-packages
    (quote
-    (company-rtags cmake-font-lock flycheck-pycheckers python-mode company-shell flycheck-rtags flycheck company lice transient magit json-mode helm-rtags rtags helm dash))))
+    (company-rtags cmake-font-lock flycheck-pycheckers python-mode company-shell flycheck-rtags flycheck company transient magit lice json-mode helm-rtags rtags helm dash))))
 (custom-set-faces
- ;; custom-set-faces was added by Custom.
+ ;; `custom-set-faces' was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+;; install only the missing packages based on `package-selected-packages'
+;; do NOT forget the rtags has binaries!!!
+(package-install-selected-packages)
 
 ;;; emacs core related
 
