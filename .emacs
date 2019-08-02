@@ -1,4 +1,4 @@
-;;; .emacs --- config file for Emacs
+;;; .emacs --- config file for emacs
 
 ;;; Commentary:
 
@@ -26,7 +26,7 @@
  '(json-reformat:indent-width 2)
  '(package-selected-packages
    (quote
-    (cmake-font-lock flycheck-pycheckers python-mode company-shell flycheck-rtags flycheck company lice transient magit json-mode helm-rtags rtags helm dash))))
+    (company-rtags cmake-font-lock flycheck-pycheckers python-mode company-shell flycheck-rtags flycheck company lice transient magit json-mode helm-rtags rtags helm dash))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -54,9 +54,6 @@
 (show-paren-mode 1)
 (defvar show-paren-delay 0)
 
-
-;;; common
-
 ;; default config, no magic is added
 (require 'helm-config)
 (helm-mode 1)
@@ -70,43 +67,52 @@
   (define-key emacs-lisp-mode-map       [remap completion-at-point] 'helm-lisp-completion-at-point))
 
 
+;;; common
+
+(require 'company)
+
+
 ;;; elisp
 
 (add-hook 'emacs-lisp-mode-hook 'flycheck-mode)
 (add-hook 'emacs-lisp-mode-hook 'company-mode)
 ;(add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
-;(add-hook 'emacs-lisp-mode-hook 'flyspell-prog-mode)
 
 
-;;; C and C++
+;;; all C* languages
 
 (require 'rtags)
-(setq rtags-display-result-backend 'helm)
-;(add-hook 'c-mode-hook 'rtags-start-process-unless-running)
-;(add-hook 'c++-mode-hook 'rtags-start-process-unless-running)
+
+;; enable logging, see: *RTags Log* buffer
 (setq rtags-rc-log-enabled t)
+
+;; make sure the rdm is running in all C* modes
+(add-hook 'c-mode-common-hook 'rtags-start-process-unless-running)
+
+;; https://github.com/Andersbakken/rtags/wiki/Usage#fall-back-to-other-taggers
 (rtags-enable-standard-keybindings)
+
+;; helm is fancy
+(setq rtags-display-result-backend 'helm)
+
+(add-hook 'c-mode-common-hook 'company-mode)
+(setq rtags-completions-enabled t)
+
+;; bind rtags with company
+(push 'company-rtags company-backends)
 
 (define-key c-mode-base-map (kbd "<C-tab>") (function company-complete))
 
-(add-hook 'c-mode-common-hook 'flycheck-mode)
-
+(setq rtags-autostart-diagnostics t)
 (require 'flycheck-rtags)
 (defun my-flycheck-rtags-setup ()
   "Configure flycheck-rtags for better experience."
- (flycheck-select-checker 'rtags)
+  (flycheck-mode)
+  (flycheck-select-checker 'rtags)
   (setq-local flycheck-check-syntax-automatically nil)
-  (setq-local flycheck-highlighting-mode nil)) ;; RTags creates more accurate overlays.
-;(defun my-flycheck-rtags-setup ()
-;  "Own flycheck rtags setup."
-;  (flycheck-select-checker 'rtags)
-;  (setq-local flycheck-highlighting-mode nil)
-;  (setq-local flycheck-check-syntax-automatically nil))
+  (setq-local flycheck-highlighting-mode nil) ;; RTags creates more accurate overlays.
+)
 (add-hook 'c-mode-common-hook #'my-flycheck-rtags-setup)
-
-;(add-hook 'c-mode-common-hook 'company-mode)
-;(add-hook 'c-mode-common-hook 'flycheck-mode)
-
 
 ;;; shell script
 
