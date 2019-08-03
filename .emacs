@@ -74,6 +74,7 @@
 ;;; common
 
 (require 'company)
+(global-set-key (kbd "<C-tab>") (function company-complete))
 
 
 ;;; elisp
@@ -105,8 +106,6 @@
 ;; bind rtags with company
 (push 'company-rtags company-backends)
 
-(define-key c-mode-base-map (kbd "<C-tab>") (function company-complete))
-
 (setq rtags-autostart-diagnostics t)
 (require 'flycheck-rtags)
 (defun my-flycheck-rtags-setup ()
@@ -120,8 +119,9 @@
 
 ;;; shell script
 
-;(add-to-list 'company-backends '(company-shell company-shell-env))
+(add-to-list 'company-backends '(company-shell company-shell-env))
 (add-hook 'shell-script-mode 'company-mode)
+
 (add-hook 'shell-script-mode 'flycheck-mode)
 
 
