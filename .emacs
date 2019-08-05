@@ -26,7 +26,7 @@
  '(json-reformat:indent-width 2)
  '(package-selected-packages
    (quote
-    (helpful company-rtags cmake-font-lock flycheck-pycheckers python-mode flycheck-rtags flycheck company transient magit lice json-mode helm-rtags rtags helm dash))))
+    (company-flx helpful company-rtags cmake-font-lock flycheck-pycheckers python-mode flycheck-rtags flycheck company transient magit lice json-mode helm-rtags rtags helm dash))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -99,10 +99,15 @@
 ;; look at interactive functions.
 (global-set-key (kbd "C-h C") #'helpful-command)
 
+
 ;;; common
 
 (require 'company)
 (global-set-key (kbd "<C-tab>") (function company-complete))
+
+;; enable fuzzy logic of company
+(with-eval-after-load 'company
+  (company-flx-mode +1))
 
 
 ;;; elisp
