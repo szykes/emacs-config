@@ -58,8 +58,12 @@
 (show-paren-mode 1)
 (defvar show-paren-delay 0)
 
-;; default config, no magic is added
 (require 'helm-config)
+
+;; fix of arrows in find-file
+(customize-set-variable 'helm-ff-lynx-style-map t)
+
+;; default config, no magic is added
 (helm-mode 1)
 (define-key global-map [remap find-file] 'helm-find-files)
 (define-key global-map [remap occur] 'helm-occur)
