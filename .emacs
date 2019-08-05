@@ -26,7 +26,7 @@
  '(json-reformat:indent-width 2)
  '(package-selected-packages
    (quote
-    (helpful company-rtags cmake-font-lock flycheck-pycheckers python-mode company-shell flycheck-rtags flycheck company transient magit lice json-mode helm-rtags rtags helm dash))))
+    (helpful company-rtags cmake-font-lock flycheck-pycheckers python-mode flycheck-rtags flycheck company transient magit lice json-mode helm-rtags rtags helm dash))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -129,6 +129,7 @@
 
 ;; bind rtags with company
 (push 'company-rtags company-backends)
+(define-key c-mode-base-map (kbd "<C-tab>") (function company-complete))
 
 (setq rtags-autostart-diagnostics t)
 (require 'flycheck-rtags)
@@ -143,8 +144,8 @@
 
 ;;; shell script
 
-(add-to-list 'company-backends '(company-shell company-shell-env))
-(add-hook 'shell-script-mode 'company-mode)
+;(add-to-list 'company-backends '(company-shell company-shell-env))
+;(add-hook 'shell-script-mode 'company-mode)
 
 (add-hook 'shell-script-mode 'flycheck-mode)
 
