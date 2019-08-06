@@ -173,6 +173,7 @@
 ;; default config, no magic is added
 (autoload 'cmake-font-lock-activate "cmake-font-lock" nil t)
 (add-hook 'cmake-mode-hook 'cmake-font-lock-activate)
+(add-hook 'cmake-mode-hook 'company-mode)
 
 
 (provide '.emacs)
