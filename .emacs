@@ -127,8 +127,14 @@
 ;; make sure the rdm is running in all C* modes
 (add-hook 'c-mode-common-hook 'rtags-start-process-unless-running)
 
-;; https://github.com/Andersbakken/rtags/wiki/Usage#fall-back-to-other-taggers
-(rtags-enable-standard-keybindings)
+(define-key c-mode-base-map (kbd "M-.") (function rtags-find-symbol-at-point))
+(define-key c-mode-base-map (kbd "M-,") (function rtags-find-references-at-point))
+(define-key c-mode-base-map (kbd "M-;") (function rtags-find-file))
+(define-key c-mode-base-map (kbd "C-.") (function rtags-location-stack-forward))
+(define-key c-mode-base-map (kbd "C-,") (function rtags-location-stack-back))
+(define-key c-mode-base-map (kbd "C-M-.") (function rtags-find-symbol))
+(define-key c-mode-base-map (kbd "C-M-,") (function rtags-find-references))
+(define-key c-mode-base-map (kbd "C-<") (function rtags-find-virtuals-at-point))
 
 ;; helm is fancy
 (setq rtags-display-result-backend 'helm)
