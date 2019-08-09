@@ -102,6 +102,26 @@
 
 ;;; all C* languages
 
+(defun c-or-c++-header ()
+  "Set `c++-mode', if the header has matching source file.
+Otherwise `c-or-c++-mode' decides"
+  (interactive)
+  (let ((dir-path (file-name-directory (buffer-file-name)))
+	(c-file-name (file-name-base (buffer-file-name)))
+	(possbile-location '("" "../" "../src/" "../source/" "../sources/"))
+	(found nil))
+    (while possbile-location
+      (let ((location (pop possbile-location))
+	    (possible-extension '(".cc" ".cpp" ".CPP" ".c++" ".cp" ".cxx")))
+	(while possible-extension
+	  (let ((extension (pop possible-extension)))
+	    (when (file-exists-p (concat dir-path location c-file-name extension))
+	      (setq found t))))))
+    (if found
+	(c++-mode)
+      (c-or-c++-mode))))
+(add-to-list 'auto-mode-alist '("\\.h\\'" c-or-c++-header))
+
 (require 'rtags)
 
 ;; enable logging, see: *RTags Log* buffer
