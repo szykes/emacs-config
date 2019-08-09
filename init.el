@@ -1,4 +1,4 @@
-;;; .emacs --- config file for emacs
+;;; init.el --- config file for emacs
 
 ;;; Commentary:
 
@@ -9,7 +9,9 @@
 (package-initialize)
 
 (setq custom-file (expand-file-name "config/custom.el" user-emacs-directory))
-(load-file custom-file)
+(if (file-exists-p custom-file)
+    (load-file custom-file)
+  (error "%s does not exists!" custom-file))
 
 ;; install only the missing packages based on `package-selected-packages'
 ;; do NOT forget the rtags has binaries!!!
@@ -22,7 +24,11 @@
 
 ;; automatically save and restore sessions
 ;; server-client usage is preferred
-(defvar desktop-dirname             "~/.emacs.d/desktop/")
+(defvar desktop-dirname             (expand-file-name "desktop/" user-emacs-directory))
+(when (not (file-directory-p desktop-dirname))
+  (progn
+    (message "Create %s" desktop-dirname)
+    (make-directory desktop-dirname)))
 (defvar desktop-base-file-name      "emacs.desktop")
 (defvar desktop-base-lock-name      "lock")
 (defvar desktop-path                (list desktop-dirname))
@@ -159,5 +165,5 @@
 (add-hook 'cmake-mode-hook 'company-mode)
 
 
-(provide '.emacs)
-;;; .emacs ends here
+(provide 'init.el)
+;;; init.el ends here
