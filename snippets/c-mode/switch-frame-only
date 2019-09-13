@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: switch-frame-only
+# key: swit
+# --
+switch ($1)
+{
+  $0
+}

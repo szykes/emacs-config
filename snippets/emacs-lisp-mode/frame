@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
-# name: frame
+# name: frame - recommended comment sections for the standard elisp file
 # key: frame
 # --
 ;;; `(file-name-nondirectory (buffer-file-name))` --- $1

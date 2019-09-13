@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: extern
+# key: ex
+# --
+extern $1 $0

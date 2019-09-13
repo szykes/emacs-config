@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: unsigned
+# key: uns
+# --
+unsigned $1 $0

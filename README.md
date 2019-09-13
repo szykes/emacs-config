@@ -46,7 +46,7 @@ Basic stuff:
 - ```flycheck```
 - ```company```
 - ```eldoc```
-- ```yasnippet``` (with very limited snippets right now)
+- ```yasnippet``` (with very limited snippets right now, try ```yas-describe-table-by-namehash```)
 
 ## C and Cpp
 
@@ -55,4 +55,4 @@ Advanced stuff:
 - ```rtags``` (with ```helm``` backend)
 - ```company``` (with ```rtags``` integration)
 - ```flycheck``` (with ```rtags``` integration)
-- ```yasnippet``` (with very limited snippets right now)
+- ```yasnippet``` (with very limited snippets right now, try ```yas-describe-table-by-namehash```)

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: typedef
+# key: typ
+# --
+typedef $1 $0;

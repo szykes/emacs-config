@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: static
+# key: sta
+# --
+static $1 $0
