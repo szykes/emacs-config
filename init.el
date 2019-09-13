@@ -96,12 +96,23 @@
 (with-eval-after-load 'company
   (company-flx-mode +1))
 
+;; load helper source code of snippets
+(defvar snippet-helper-file (expand-file-name "snippets/snippet-helper.el" user-emacs-directory))
+(if (file-exists-p snippet-helper-file)
+    (load-file snippet-helper-file)
+  (error "%s does not exists!" snippet-helper-file))
+
+;; load the snippets database
+(require 'yasnippet)
+(yas-reload-all)
+
 
 ;;; elisp
 
 (add-hook 'emacs-lisp-mode-hook 'flycheck-mode)
 (add-hook 'emacs-lisp-mode-hook 'company-mode)
-(add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
+(add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
+(add-hook 'emacs-lisp-mode-hook 'yas-minor-mode)
 
 
 ;;; all C* languages
@@ -127,6 +138,9 @@ Otherwise `c-or-c++-mode' decides."
 	(c++-mode)
       (c-or-c++-mode))))
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c-or-c++-header))
+
+;; enable yasnippet mode
+(add-hook 'c-mode-common-hook #'yas-minor-mode)
 
 (require 'rtags)
 

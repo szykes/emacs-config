@@ -18,11 +18,12 @@
  '(custom-safe-themes
    (quote
     ("a1289424bbc0e9f9877aa2c9a03c7dfd2835ea51d8781a0bf9e2415101f70a7e" default)))
+ '(helm-ff-lynx-style-map t)
  '(js-indent-level 2)
  '(json-reformat:indent-width 2)
  '(package-selected-packages
    (quote
-    (company-flx helpful company-rtags cmake-font-lock flycheck-pycheckers python-mode flycheck-rtags flycheck company transient magit lice json-mode helm-rtags rtags helm dash))))
+    (yasnippet company-flx helpful company-rtags cmake-font-lock flycheck-pycheckers python-mode flycheck-rtags flycheck company transient magit lice json-mode helm-rtags rtags helm dash))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
