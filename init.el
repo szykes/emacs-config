@@ -86,6 +86,10 @@
 ;; look at interactive functions.
 (global-set-key (kbd "C-h C") #'helpful-command)
 
+;; enable anzu
+(global-set-key [remap query-replace] 'anzu-query-replace)
+(global-set-key [remap query-replace-regexp] 'anzu-query-replace-regexp)
+(global-anzu-mode +1)
 
 ;;; common
 
