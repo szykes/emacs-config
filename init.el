@@ -46,6 +46,10 @@
 ;; fix of arrows in find-file
 (customize-set-variable 'helm-ff-lynx-style-map t)
 
+;; enable fuzzy matching
+(customize-set-variable 'helm-mode-fuzzy-match t)
+(customize-set-variable 'helm-completion-in-region-fuzzy-match t)
+
 ;; default config, no magic is added
 (helm-mode 1)
 (define-key global-map [remap find-file] 'helm-find-files)
