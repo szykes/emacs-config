@@ -13,6 +13,12 @@
     (load-file custom-file)
   (error "%s does not exists!" custom-file))
 
+(defvar desktop-dirname (expand-file-name "desktop/" user-emacs-directory))
+
+;; refresh the packages only the very first time
+(when (not (file-directory-p desktop-dirname))
+  (package-refresh-contents))
+
 ;; install only the missing packages based on `package-selected-packages'
 ;; do NOT forget the rtags has binaries!!!
 (package-install-selected-packages)
@@ -24,7 +30,7 @@
 
 ;; automatically save and restore sessions
 ;; server-client usage is preferred
-(defvar desktop-dirname             (expand-file-name "desktop/" user-emacs-directory))
+
 (when (not (file-directory-p desktop-dirname))
   (progn
     (message "Create %s" desktop-dirname)
