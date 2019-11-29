@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: forward-list
+# key: flist
+# --
+std::forward_list<$1> $0

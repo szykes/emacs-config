@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: multiset
+# key: mset
+# --
+std::multiset<$1> $0

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: priority-queue
+# key: pque
+# --
+std::priority_queue<$1> $0

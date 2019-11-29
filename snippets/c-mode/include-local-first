@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: include-local-first
+# key: incl
+# --
+#include "$0"

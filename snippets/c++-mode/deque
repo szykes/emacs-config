@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: deque
+# key: deq
+# --
+std::deque<$1> $0

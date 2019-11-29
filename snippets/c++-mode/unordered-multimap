@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: unordered-multimap
+# key: ummap
+# --
+std::unordered_multimap<$1, $2> $0

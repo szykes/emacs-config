@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: stack
+# key: sta
+# --
+std::stack<$1> $0

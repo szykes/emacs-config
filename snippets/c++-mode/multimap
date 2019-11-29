@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: multimap
+# key: mmap
+# --
+std::multimap<$1, $2> $0
