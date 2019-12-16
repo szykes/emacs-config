@@ -25,6 +25,11 @@
 
 ;;; emacs core related
 
+;; MacOS related settings
+(when (eq system-type 'darwin)
+  (setq mac-option-modifier 'none)
+  (setq mac-command-modifier 'meta))
+
 ;; no need to have menubar
 (menu-bar-mode -1)
 
