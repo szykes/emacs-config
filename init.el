@@ -177,6 +177,9 @@ Otherwise `c-or-c++-mode' decides."
       (c-or-c++-mode))))
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c-or-c++-header))
 
+(defvar c-default-style "linux")
+(defvar c-basic-offset 2)
+
 ;; enable yasnippet mode
 (add-hook 'c-mode-common-hook #'yas-minor-mode)
 
