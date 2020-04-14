@@ -23,7 +23,7 @@
  '(json-reformat:indent-width 2)
  '(package-selected-packages
    (quote
-    (ztree anzu yasnippet company-flx helpful company-rtags cmake-font-lock flycheck-pycheckers python-mode flycheck-rtags flycheck company transient magit lice json-mode helm-rtags rtags helm dash))))
+    (company-lsp lsp-ui lsp-mode helm-projectile projectile ztree anzu yasnippet company-flx helpful cmake-font-lock flycheck-pycheckers python-mode flycheck company transient magit lice json-mode helm dash))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

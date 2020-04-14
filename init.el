@@ -144,6 +144,29 @@ will be killed."
             (message "Killed non-existing/unreadable file buffer: %s" filename))))))
   (message "Finished reverting buffers containing unmodified files."))
 
+;; projectile config
+(projectile-mode +1)
+(defvar projectile-mode-map) ;; elminate warning
+(define-key projectile-mode-map (kbd "M-p") 'projectile-command-map)
+
+;; proctile with helm
+(require 'helm-projectile)
+(helm-projectile-on)
+
+(require 'lsp-mode)
+
+(add-hook 'lsp-mode-hook 'lsp-ui-mode)
+
+;; company setup for lsp
+(require 'company-lsp)
+(push 'company-lsp company-backends)
+
+;; it can be auto, t, or nil
+(defvar company-lsp-cache-candidates auto)
+
+;; more advanced trigger handling (case of e.g. std::)
+(defvar company-lsp-enable-recompletion t)
+
 
 ;;; elisp
 
@@ -183,43 +206,21 @@ Otherwise `c-or-c++-mode' decides."
 ;; enable yasnippet mode
 (add-hook 'c-mode-common-hook #'yas-minor-mode)
 
-(require 'rtags)
-
-;; enable logging, see: *RTags Log* buffer
-(setq rtags-rc-log-enabled t)
-
-;; make sure the rdm is running in all C* modes
-(add-hook 'c-mode-common-hook 'rtags-start-process-unless-running)
-
-(define-key c-mode-base-map (kbd "M-.") (function rtags-find-symbol-at-point))
-(define-key c-mode-base-map (kbd "M-,") (function rtags-find-references-at-point))
-(define-key c-mode-base-map (kbd "M-;") (function rtags-find-file))
-(define-key c-mode-base-map (kbd "C-.") (function rtags-location-stack-forward))
-(define-key c-mode-base-map (kbd "C-,") (function rtags-location-stack-back))
-(define-key c-mode-base-map (kbd "C-M-.") (function rtags-find-symbol))
-(define-key c-mode-base-map (kbd "C-M-,") (function rtags-find-references))
-(define-key c-mode-base-map (kbd "C-<") (function rtags-find-virtuals-at-point))
-
-;; helm is fancy
-(setq rtags-display-result-backend 'helm)
-
+;; enable company mode
 (add-hook 'c-mode-common-hook 'company-mode)
-(setq rtags-completions-enabled t)
+;(define-key c-mode-base-map (kbd "<C-tab>") (function company-complete))
 
-;; bind rtags with company
-(push 'company-rtags company-backends)
-(define-key c-mode-base-map (kbd "<C-tab>") (function company-complete))
-
-(setq rtags-autostart-diagnostics t)
-(require 'flycheck-rtags)
-(defun my-flycheck-rtags-setup ()
-  "Configure flycheck-rtags for better experience."
-  (flycheck-mode)
-  (flycheck-select-checker 'rtags)
-  (setq-local flycheck-check-syntax-automatically nil)
-  (setq-local flycheck-highlighting-mode nil) ;; RTags creates more accurate overlays.
-)
-(add-hook 'c-mode-common-hook #'my-flycheck-rtags-setup)
+;(require 'flycheck-rtags)
+;(defun my-flycheck-rtags-setup ()
+;  "Configure flycheck-rtags for better experience."
+;  (flycheck-mode)
+;  (flycheck-select-checker 'rtags)
+;  (setq-local flycheck-check-syntax-automatically nil)
+;  (setq-local flycheck-highlighting-mode nil) ;; RTags creates more accurate overlays.
+;)
+;(add-hook 'c-mode-common-hook #'my-flycheck-rtags-setup)
+(add-hook 'c-mode-common-hook 'flycheck-mode)
+(add-hook 'c-mode-common-hook #'lsp)
 
 ;;; shell script
 
