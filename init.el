@@ -231,7 +231,9 @@ Otherwise `c-or-c++-mode' decides."
 
 ;; python
 
+(setq-local flycheck-python-pylint-executable "python3.8")
 (add-hook 'flycheck-mode-hook #'flycheck-pycheckers-setup)
+(add-hook 'python-mode-hook 'flycheck-mode)
 
 
 ;;; json
