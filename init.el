@@ -135,7 +135,12 @@
 (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
 (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)
 
-(add-hook 'lsp-mode-hook 'lsp-ui-mode)
+;; showing always lsp ui doc is annoying
+(setq lsp-ui-doc-enable nil)
+;; sideline seems not work in no-window mode
+(setq lsp-ui-sideline-enable nil)
+
+;;(add-hook 'lsp-mode-hook 'lsp-ui-mode)
 
 ;; lsp-ivy
 ;; call `lsp-ivy-workspace-symbol' or `lsp-ivy-global-workspace-symbol' to find a symbol
