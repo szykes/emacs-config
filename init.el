@@ -78,25 +78,6 @@
 (global-set-key (kbd "C-c j") 'counsel-git-grep)
 (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
 
-;; TODO magit & its ivy
-
-(require 'projectile)
-(projectile-mode +1)
-;; you can set one directory for searching projects by calling `projectile-discover-projects-in-directory'
-;; you set more directories by setting `projectile-project-search-path'
-
-;; `counsel-git' is used as file search in the project
-;; `counsel-git-grep' is used the search in files
-
-;; C-c p C-h for keybinding help
-(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-
-(require 'counsel-projectile)
-(counsel-projectile-mode)
-;; more info about the keybindings: https://github.com/ericdanan/counsel-projectile
-
-;; TODO more investigatio in projectile
-
 ;; Note that the built-in `describe-function' includes both functions
 ;; and macros. `helpful-function' is functions only, so we provide
 ;; `helpful-callable' as a drop-in replacement.
@@ -128,12 +109,53 @@
 
 ;;; common
 
+;; TODO magit & its ivy
+
+(require 'projectile)
+(projectile-mode +1)
+;; you can set one directory for searching projects by calling `projectile-discover-projects-in-directory'
+;; you set more directories by setting `projectile-project-search-path'
+
+;; `counsel-git' is used as file search in the project
+;; `counsel-git-grep' is used the search in files
+
+;; C-c p C-h for keybinding help
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+
+(require 'counsel-projectile)
+(counsel-projectile-mode)
+;; more info about the keybindings: https://github.com/ericdanan/counsel-projectile
+
+;; TODO more investigatio in projectile
+
+(require 'lsp-mode)
+
+(require 'lsp-ui)
+;; `xref-pop-marker-stack' works with lsp-ui
+(define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
+(define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)
+
+(add-hook 'lsp-mode-hook 'lsp-ui-mode)
+
+;; lsp-ivy
+;; call `lsp-ivy-workspace-symbol' or `lsp-ivy-global-workspace-symbol' to find a symbol
+
 (require 'company)
 (global-set-key (kbd "<C-tab>") (function company-complete))
 
 ;; enable fuzzy logic of company
 (with-eval-after-load 'company
   (company-flx-mode +1))
+
+;; company setup for lsp
+(require 'company-lsp)
+(push 'company-lsp company-backends)
+
+;; it can be auto, t, or nil
+(defvar company-lsp-cache-candidates auto)
+
+;; more advanced trigger handling (case of e.g. std::)
+(defvar company-lsp-enable-recompletion t)
 
 ;; load helper source code of snippets
 (defvar snippet-helper-file (expand-file-name "snippets/snippet-helper.el" user-emacs-directory))
@@ -167,33 +189,6 @@ will be killed."
             (kill-buffer buf)
             (message "Killed non-existing/unreadable file buffer: %s" filename))))))
   (message "Finished reverting buffers containing unmodified files."))
-
-;; projectile config
-(projectile-mode +1)
-(defvar projectile-mode-map) ;; elminate warning
-(define-key projectile-mode-map (kbd "M-p") 'projectile-command-map)
-
-(require 'lsp-mode)
-
-(require 'lsp-ui)
-;; `xref-pop-marker-stack' works with lsp-ui
-(define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
-(define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)
-
-(add-hook 'lsp-mode-hook 'lsp-ui-mode)
-
-;; lsp-ivy
-;; call `lsp-ivy-workspace-symbol' or `lsp-ivy-global-workspace-symbol' to find a symbol
-
-;; company setup for lsp
-(require 'company-lsp)
-(push 'company-lsp company-backends)
-
-;; it can be auto, t, or nil
-(defvar company-lsp-cache-candidates auto)
-
-;; more advanced trigger handling (case of e.g. std::)
-(defvar company-lsp-enable-recompletion t)
 
 
 ;;; elisp
