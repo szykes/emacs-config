@@ -18,12 +18,11 @@
  '(custom-safe-themes
    (quote
     ("a1289424bbc0e9f9877aa2c9a03c7dfd2835ea51d8781a0bf9e2415101f70a7e" default)))
- '(helm-ff-lynx-style-map t)
  '(js-indent-level 2)
  '(json-reformat:indent-width 2)
  '(package-selected-packages
    (quote
-    (company-lsp lsp-ui lsp-mode helm-projectile projectile ztree anzu yasnippet company-flx helpful cmake-font-lock flycheck-pycheckers python-mode flycheck company transient magit lice json-mode helm dash))))
+    (lsp-ui auto-compile counsel counsel-projectile counsel-test ivy ivy-explorer lsp-ivy swiper company-lsp lsp-mode projectile ztree anzu yasnippet company-flx helpful cmake-font-lock flycheck-pycheckers python-mode flycheck company transient magit lice json-mode dash))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

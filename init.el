@@ -3,8 +3,13 @@
 ;;; Commentary:
 
 ;;; Code:
+
+;;; package & file
+
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+
+(setq load-prefer-newer t)
 
 (package-initialize)
 
@@ -20,8 +25,16 @@
   (package-refresh-contents))
 
 ;; install only the missing packages based on `package-selected-packages'
-;; do NOT forget the rtags has binaries!!!
 (package-install-selected-packages)
+
+;; Solves this issue: Source file `...' newer than byte-compiled file
+(require 'auto-compile)
+(auto-compile-on-save-mode)
+(auto-compile-on-load-mode)
+
+;; to see the hidden *Compile-log* call the `auto-compile-display-log'
+(setq auto-compile-display-buffer nil)
+
 
 ;;; emacs core related
 
@@ -35,7 +48,6 @@
 
 ;; automatically save and restore sessions
 ;; server-client usage is preferred
-
 (when (not (file-directory-p desktop-dirname))
   (progn
     (message "Create %s" desktop-dirname)
@@ -52,31 +64,43 @@
 (show-paren-mode 1)
 (defvar show-paren-delay 0)
 
-(require 'helm-config)
+(ivy-mode 1)
+(defvar ivy-use-virtual-buffers t)
+(setq enable-recursive-minibuffers t)
+;; enable this if you want `swiper' to use it
+;; (setq search-default-mode #'char-fold-to-regexp)
+(global-set-key [remap isearch-forward] 'swiper) ; C-s
+(global-set-key [remap isearch-backward] 'swiper) ; C-r
+(global-set-key (kbd "C-c C-r") 'ivy-resume)
+(global-set-key (kbd "M-x") 'counsel-M-x)
+(global-set-key (kbd "C-x C-f") 'counsel-find-file)
+(global-set-key (kbd "C-c g") 'counsel-git)
+(global-set-key (kbd "C-c j") 'counsel-git-grep)
+(define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
 
-;; fix of arrows in find-file
-(customize-set-variable 'helm-ff-lynx-style-map t)
+;; TODO magit & its ivy
 
-;; enable fuzzy matching
-(customize-set-variable 'helm-mode-fuzzy-match t)
-(customize-set-variable 'helm-completion-in-region-fuzzy-match t)
+(require 'projectile)
+(projectile-mode +1)
+;; you can set one directory for searching projects by calling `projectile-discover-projects-in-directory'
+;; you set more directories by setting `projectile-project-search-path'
 
-;; default config, no magic is added
-(helm-mode 1)
-(define-key global-map [remap find-file] 'helm-find-files)
-(define-key global-map [remap occur] 'helm-occur)
-(define-key global-map [remap list-buffers] 'helm-buffers-list)
-(define-key global-map [remap dabbrev-expand] 'helm-dabbrev)
-(define-key global-map [remap execute-extended-command] 'helm-M-x)
-(unless (boundp 'completion-in-region-function)
-  (define-key lisp-interaction-mode-map [remap completion-at-point] 'helm-lisp-completion-at-point)
-  (define-key emacs-lisp-mode-map       [remap completion-at-point] 'helm-lisp-completion-at-point))
+;; `counsel-git' is used as file search in the project
+;; `counsel-git-grep' is used the search in files
+
+;; C-c p C-h for keybinding help
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+
+(require 'counsel-projectile)
+(counsel-projectile-mode)
+;; more info about the keybindings: https://github.com/ericdanan/counsel-projectile
+
+;; TODO more investigatio in projectile
 
 ;; Note that the built-in `describe-function' includes both functions
 ;; and macros. `helpful-function' is functions only, so we provide
 ;; `helpful-callable' as a drop-in replacement.
 (global-set-key (kbd "C-h f") #'helpful-callable)
-
 (global-set-key (kbd "C-h v") #'helpful-variable)
 (global-set-key (kbd "C-h k") #'helpful-key)
 
@@ -149,13 +173,17 @@ will be killed."
 (defvar projectile-mode-map) ;; elminate warning
 (define-key projectile-mode-map (kbd "M-p") 'projectile-command-map)
 
-;; proctile with helm
-(require 'helm-projectile)
-(helm-projectile-on)
-
 (require 'lsp-mode)
 
+(require 'lsp-ui)
+;; `xref-pop-marker-stack' works with lsp-ui
+(define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
+(define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)
+
 (add-hook 'lsp-mode-hook 'lsp-ui-mode)
+
+;; lsp-ivy
+;; call `lsp-ivy-workspace-symbol' or `lsp-ivy-global-workspace-symbol' to find a symbol
 
 ;; company setup for lsp
 (require 'company-lsp)
@@ -210,15 +238,6 @@ Otherwise `c-or-c++-mode' decides."
 (add-hook 'c-mode-common-hook 'company-mode)
 ;(define-key c-mode-base-map (kbd "<C-tab>") (function company-complete))
 
-;(require 'flycheck-rtags)
-;(defun my-flycheck-rtags-setup ()
-;  "Configure flycheck-rtags for better experience."
-;  (flycheck-mode)
-;  (flycheck-select-checker 'rtags)
-;  (setq-local flycheck-check-syntax-automatically nil)
-;  (setq-local flycheck-highlighting-mode nil) ;; RTags creates more accurate overlays.
-;)
-;(add-hook 'c-mode-common-hook #'my-flycheck-rtags-setup)
 (add-hook 'c-mode-common-hook 'flycheck-mode)
 (add-hook 'c-mode-common-hook #'lsp)
 
