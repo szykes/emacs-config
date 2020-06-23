@@ -140,6 +140,10 @@
 
 (require 'lsp-mode)
 
+;; TODO do I really need to have working keymap of lsp-mode?
+;;(setq lsp-command-map "C-c l")
+;;(add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration)
+
 (require 'lsp-ui)
 ;; `xref-pop-marker-stack' works with lsp-ui
 (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
@@ -165,8 +169,8 @@
 ;; company setup for lsp
 (require 'company-lsp)
 
-(setq company-minimum-prefix-length 1)
-(setq company-idle-delay 0.0)
+(setq company-minimum-prefix-length 2)
+(setq company-idle-delay 0.2)
 
 (push 'company-lsp company-backends)
 
