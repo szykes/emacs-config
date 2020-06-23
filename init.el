@@ -72,6 +72,9 @@
 (defvar ivy-use-virtual-buffers t)
 (setq enable-recursive-minibuffers t)
 
+(require 'ivy-explorer)
+(ivy-explorer-mode 1)
+
 ;; TODO install the https://github.com/purcell/ivy-smex (history based order of M-x)
 
 ;; enable this if you want `swiper' to use it
@@ -80,7 +83,7 @@
 (global-set-key [remap isearch-backward] 'swiper) ; C-r
 (global-set-key (kbd "C-c C-r") 'ivy-resume)
 (global-set-key (kbd "M-x") 'counsel-M-x)
-(global-set-key (kbd "C-x C-f") 'counsel-find-file)
+(global-set-key (kbd "C-x C-f") 'find-file)
 (global-set-key (kbd "C-c g") 'counsel-git)
 (global-set-key (kbd "C-c j") 'counsel-git-grep)
 (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
