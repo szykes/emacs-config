@@ -22,7 +22,7 @@
  '(json-reformat:indent-width 2)
  '(package-selected-packages
    (quote
-    (lsp-ui auto-compile counsel counsel-projectile counsel-test ivy ivy-explorer lsp-ivy swiper company-lsp lsp-mode projectile ztree anzu yasnippet company-flx helpful cmake-font-lock flycheck-pycheckers python-mode flycheck company transient magit lice json-mode dash))))
+    (which-key lsp-ui auto-compile counsel counsel-projectile counsel-test ivy ivy-explorer lsp-ivy swiper company-lsp lsp-mode projectile ztree anzu yasnippet company-flx helpful cmake-font-lock flycheck-pycheckers python-mode flycheck company transient magit lice json-mode dash))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

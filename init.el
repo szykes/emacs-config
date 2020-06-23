@@ -67,6 +67,9 @@
 (ivy-mode 1)
 (defvar ivy-use-virtual-buffers t)
 (setq enable-recursive-minibuffers t)
+
+;; TODO install the https://github.com/purcell/ivy-smex (history based order of M-x)
+
 ;; enable this if you want `swiper' to use it
 ;; (setq search-default-mode #'char-fold-to-regexp)
 (global-set-key [remap isearch-forward] 'swiper) ; C-s
@@ -106,6 +109,13 @@
 (global-set-key [remap query-replace] 'anzu-query-replace)
 (global-set-key [remap query-replace-regexp] 'anzu-query-replace-regexp)
 (global-anzu-mode +1)
+
+;; performance settings for lsp-mode
+(setq gc-cons-threshold 100000000)
+(defvar read-process-output-max (* 1024 1024))
+
+(require 'which-key)
+(which-key-mode)
 
 ;;; common
 
