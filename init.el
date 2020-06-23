@@ -64,6 +64,10 @@
 (show-paren-mode 1)
 (defvar show-paren-delay 0)
 
+(defvar ivy-re-builders-alist
+      '((swiper . ivy--regex-plus)
+        (t      . ivy--regex-fuzzy)))
+
 (ivy-mode 1)
 (defvar ivy-use-virtual-buffers t)
 (setq enable-recursive-minibuffers t)
