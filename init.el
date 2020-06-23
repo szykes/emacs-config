@@ -164,6 +164,10 @@
 
 ;; company setup for lsp
 (require 'company-lsp)
+
+(setq company-minimum-prefix-length 1)
+(setq company-idle-delay 0.0)
+
 (push 'company-lsp company-backends)
 
 ;; it can be auto, t, or nil
