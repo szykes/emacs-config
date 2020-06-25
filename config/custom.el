@@ -20,6 +20,7 @@
     ("a1289424bbc0e9f9877aa2c9a03c7dfd2835ea51d8781a0bf9e2415101f70a7e" default)))
  '(js-indent-level 2)
  '(json-reformat:indent-width 2)
+ '(lsp-clients-clangd-args (quote ("--background-index" "--clang-tidy" "-j=32")))
  '(package-selected-packages
    (quote
     (which-key lsp-ui auto-compile counsel counsel-projectile counsel-test ivy ivy-explorer lsp-ivy swiper company-lsp lsp-mode projectile ztree anzu yasnippet company-flx helpful cmake-font-lock flycheck-pycheckers python-mode flycheck company transient magit lice json-mode dash))))
