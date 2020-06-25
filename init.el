@@ -75,7 +75,7 @@
 (require 'ivy-explorer)
 (ivy-explorer-mode 1)
 
-;; TODO install the https://github.com/purcell/ivy-smex (history based order of M-x)
+;; amx is installed and it provides history based listing of counsel-M-x. No config is required.
 
 ;; enable this if you want `swiper' to use it
 ;; (setq search-default-mode #'char-fold-to-regexp)
@@ -147,9 +147,7 @@
 
 (require 'lsp-mode)
 
-;; TODO do I really need to have working keymap of lsp-mode?
-;;(setq lsp-command-map "C-c l")
-;;(add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration)
+;; you need to declare .clang-tidy file for the specific project. Otherwise the clang-tidy will not work.
 
 (require 'lsp-ui)
 ;; `xref-pop-marker-stack' works with lsp-ui
