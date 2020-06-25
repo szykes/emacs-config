@@ -147,8 +147,6 @@
 (counsel-projectile-mode)
 ;; more info about the keybindings: https://github.com/ericdanan/counsel-projectile
 
-;; TODO more investigatio in projectile
-
 (require 'lsp-mode)
 
 ;; you need to declare .clang-tidy file for the specific project. Otherwise the clang-tidy will not work.
