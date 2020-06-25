@@ -6,7 +6,7 @@ Some points why you should use this:
 - the project perfectly fits in ```.emacs.d```
 - standard keybindings
 - the missing packages are installed automaically
-- the ```rtags```, ```flycheck``` and ```company``` work perfectly together (C* languages)
+- the ```lsp-mode```, ```flycheck``` and ```company``` work perfectly together (C* languages)
 
 ## Table of contents
 
@@ -32,13 +32,18 @@ The start-up can be longer than expected because the emacs loads the buffers at 
 
 ## Misc of emacs
 
-- ```helm``` (with default config and built-in fuzzy logic)
+- ```auto-compile``` (with default config)
+- ```ivy*``` (with default config and built-in fuzzy logic)
 - ```helpful``` (with default config)
 - ```anzu``` (with default config)
 - ```magit``` (with default config)
 - ```lice``` (with default config)
+- ```which-key``` (with default config)
+- ```*projectile``` (with hybrid and chached finding files)
+- ```lsp-mode``` (with default config)
 - turned off menubar
 - highlight any kind of matching bracket
+- some MacOS related settings
 
 ## elisp
 
@@ -52,7 +57,7 @@ Basic stuff:
 
 Advanced stuff:
 - smart major mode selector for header files
-- ```rtags``` (with ```helm``` backend)
-- ```company``` (with ```rtags``` integration)
-- ```flycheck``` (with ```rtags``` integration)
+- ```lsp-mode``` (with ```lsp-ui```)
+- ```company``` (with ```lsp-mode``` integration)
+- ```flycheck``` (with ```lsp-mode``` integration)
 - ```yasnippet``` (with very limited snippets right now, try ```yas-describe-table-by-namehash```)
