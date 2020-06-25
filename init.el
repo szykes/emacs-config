@@ -136,6 +136,10 @@
 ;; `counsel-git' is used as file search in the project
 ;; `counsel-git-grep' is used the search in files
 
+(setq projectile-enable-caching t)
+(setq projectile-indexing-method 'hybrid)
+;; .projectile file in the project will filter the findings
+
 ;; C-c p C-h for keybinding help
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 
