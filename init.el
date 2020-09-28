@@ -126,6 +126,11 @@
 
 ;;; common
 
+;; the indentation shall be space only
+(setq indent-tabs-mode nil)
+;; expect in the makefiles
+(add-hook 'makefile-mode-hook '(lambda () (setq indent-tabs-mode t)))
+
 ;; TODO magit & its ivy
 
 (require 'projectile)
