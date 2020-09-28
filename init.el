@@ -119,7 +119,7 @@
 
 ;; performance settings for lsp-mode
 (setq gc-cons-threshold 100000000)
-(defvar read-process-output-max (* 1024 1024))
+(setq read-process-output-max (* 3 1024 1024))
 
 (require 'which-key)
 (which-key-mode)
