@@ -34,7 +34,8 @@ The start-up can be longer than expected because the emacs loads the buffers at 
 
 This works with PuTTY.
 
-```$ cat terminfo-custom.src
+```
+$ cat terminfo-custom.src
 
 xterm-24bit|xterm with 24-bit direct color mode,
    use=xterm-256color,
@@ -45,7 +46,8 @@ xterm-24bit|xterm with 24-bit direct color mode,
 
 $ tic -x -o ~/.terminfo terminfo-custom.src
 
-$ TERM=xterm-24bit emacs```
+$ TERM=xterm-24bit emacs
+```
 
 ## Misc of emacs
 
