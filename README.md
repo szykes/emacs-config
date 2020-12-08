@@ -30,6 +30,23 @@ The start-up can be longer than expected because the emacs loads the buffers at 
 
 > Use [emacs daemon](https://www.emacswiki.org/emacs/EmacsAsDaemon) instaed, for example: ```emacs --daemon=$USER``` and ```emacsclient -s $USER -t```.
 
+## 24 bit color
+
+This works with PuTTY.
+
+```$ cat terminfo-custom.src
+
+xterm-24bit|xterm with 24-bit direct color mode,
+   use=xterm-256color,
+   sitm=\E[3m,
+   ritm=\E[23m,
+   setb24=\E[48;2;%p1%{65536}%/%d;%p1%{256}%/%{255}%&%d;%p1%{255}%&%dm,
+   setf24=\E[38;2;%p1%{65536}%/%d;%p1%{256}%/%{255}%&%d;%p1%{255}%&%dm,
+
+$ tic -x -o ~/.terminfo terminfo-custom.src
+
+$ TERM=xterm-24bit emacs```
+
 ## Misc of emacs
 
 - ```auto-compile``` (with default config)
