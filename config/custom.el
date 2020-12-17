@@ -13,17 +13,16 @@
    [default default default italic underline success warning error])
  '(ansi-color-names-vector
    ["black" "red3" "ForestGreen" "yellow3" "blue" "magenta3" "DeepSkyBlue" "gray50"])
- '(c-basic-offset 2)
- '(custom-enabled-themes (quote (manoj-dark)))
+ '(c-basic-offset 2 t)
+ '(custom-enabled-themes '(manoj-dark))
  '(custom-safe-themes
-   (quote
-    ("a1289424bbc0e9f9877aa2c9a03c7dfd2835ea51d8781a0bf9e2415101f70a7e" default)))
+   '("a1289424bbc0e9f9877aa2c9a03c7dfd2835ea51d8781a0bf9e2415101f70a7e" default))
  '(js-indent-level 2)
  '(json-reformat:indent-width 2)
- '(lsp-clients-clangd-args (quote ("--background-index" "--clang-tidy" "-j=32")))
+ '(lsp-clients-clangd-args '("--background-index" "--clang-tidy" "-j=80"))
+ '(lsp-ui-peek-enable t)
  '(package-selected-packages
-   (quote
-    (amx which-key lsp-ui auto-compile counsel counsel-projectile counsel-test ivy lsp-ivy swiper company-lsp lsp-mode projectile ztree anzu yasnippet company-flx helpful cmake-font-lock flycheck-pycheckers python-mode flycheck company transient magit lice json-mode dash))))
+   '(amx which-key lsp-ui auto-compile counsel counsel-projectile counsel-test ivy lsp-ivy swiper company-lsp lsp-mode projectile ztree anzu yasnippet company-flx helpful cmake-font-lock flycheck-pycheckers python-mode flycheck company transient magit lice json-mode dash)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
