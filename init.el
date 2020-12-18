@@ -303,5 +303,24 @@ Otherwise `c-or-c++-mode' decides."
 (add-hook 'cmake-mode-hook 'company-mode)
 
 
+;;; go
+
+;; set up before-save hooks to format buffer and add/delete imports.
+(add-hook 'go-mode-hook
+  (lambda ()
+    (add-hook 'before-save-hook #'lsp-format-buffer t t)
+    (add-hook 'before-save-hook #'lsp-organize-imports t t)))
+
+;; enable yasnippet mode
+(add-hook 'go-mode-hook #'yas-minor-mode)
+
+;; enable company mode
+(add-hook 'go-mode-hook 'company-mode)
+;(define-key c-mode-base-map (kbd "<C-tab>") (function company-complete))
+
+(add-hook 'go-mode-hook 'flycheck-mode)
+(add-hook 'go-mode-hook #'lsp)
+
+
 (provide 'init.el)
 ;;; init.el ends here
