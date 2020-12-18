@@ -183,19 +183,8 @@
 (with-eval-after-load 'company
   (company-flx-mode +1))
 
-;; company setup for lsp
-(require 'company-lsp)
-
 (setq company-minimum-prefix-length 2)
 (setq company-idle-delay 0.2)
-
-(push 'company-lsp company-backends)
-
-;; it can be auto, t, or nil
-(defvar company-lsp-cache-candidates auto)
-
-;; more advanced trigger handling (case of e.g. std::)
-(defvar company-lsp-enable-recompletion t)
 
 ;; load helper source code of snippets
 (defvar snippet-helper-file (expand-file-name "snippets/snippet-helper.el" user-emacs-directory))
