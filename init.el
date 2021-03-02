@@ -74,9 +74,6 @@
 (defvar ivy-use-virtual-buffers t)
 (setq enable-recursive-minibuffers t)
 
-;;(require 'ivy-explorer)
-;;(ivy-explorer-mode 1)
-
 ;; amx is installed and it provides history based listing of counsel-M-x. No config is required.
 
 ;; enable this if you want `swiper' to use it
