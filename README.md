@@ -80,3 +80,11 @@ Advanced stuff:
 - ```company``` (with ```lsp-mode``` integration)
 - ```flycheck``` (with ```lsp-mode``` integration)
 - ```yasnippet``` (with very limited snippets right now, try ```yas-describe-table-by-namehash```)
+
+## Java
+
+Install: [Eclipse JDT Language Server](https://github.com/emacs-lsp/lsp-java#eclipse-jdt-language-server)
+
+## YANG
+
+Install: [pyang](https://github.com/mbj4668/pyang)
