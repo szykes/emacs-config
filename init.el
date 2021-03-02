@@ -310,5 +310,19 @@ Otherwise `c-or-c++-mode' decides."
 (add-hook 'go-mode-hook #'lsp)
 
 
+;;; java
+
+(require 'lsp-java)
+
+;; enable java
+(add-hook 'java-mode-hook #'lsp)
+
+(dap-auto-configure-mode)
+
+
+;;; yang
+
+(add-hook 'yang-mode-hook #'flycheck-mode)
+
 (provide 'init.el)
 ;;; init.el ends here
