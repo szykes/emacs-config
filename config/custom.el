@@ -24,7 +24,7 @@
  '(lsp-java-server-install-dir "/home/edmaszi/tools/jdtls/0.69.0")
  '(lsp-ui-peek-enable t)
  '(package-selected-packages
-   '(flycheck-yang yang-mode go-mode lsp-java amx which-key lsp-ui auto-compile counsel counsel-projectile counsel-test ivy lsp-ivy swiper lsp-mode projectile ztree anzu yasnippet company-flx helpful cmake-font-lock flycheck-pycheckers python-mode flycheck company transient magit lice json-mode dash)))
+   '(yaml-mode flycheck-yang yang-mode go-mode lsp-java amx which-key lsp-ui auto-compile counsel counsel-projectile counsel-test ivy lsp-ivy swiper lsp-mode projectile ztree anzu yasnippet company-flx helpful cmake-font-lock flycheck-pycheckers python-mode flycheck company transient magit lice json-mode dash)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
