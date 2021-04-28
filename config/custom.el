@@ -20,6 +20,7 @@
  '(js-indent-level 2)
  '(json-reformat:indent-width 2)
  '(lsp-clients-clangd-args '("--background-index" "--clang-tidy" "-j=80"))
+ '(lsp-file-watch-threshold 10000)
  '(lsp-java-server-install-dir "/home/edmaszi/tools/jdtls/0.9.0")
  '(lsp-ui-peek-enable t)
  '(package-selected-packages
