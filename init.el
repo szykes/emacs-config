@@ -272,10 +272,19 @@ Otherwise `c-or-c++-mode' decides."
 
 ;; python
 
-(setq-local flycheck-python-pylint-executable "python3.8")
+(require 'lsp-pyright)
+
+(setq lsp-pyright-python-executable-cmd "python3.9")
+
+(setq lsp-pyright-use-library-code-for-types t) ;; set this to nil if getting too many false positive type errors
+(setq lsp-pyright-stub-path (concat (getenv "HOME") "/tools/python-type-stubs"))
+(add-hook 'python-mode-hook #'lsp)
+
+(setq-local flycheck-python-pylint-executable "python3.9")
+(setq-local flycheck-python-mypy-executable "python3.9")
+(setq-local flycheck-python-flake8-executable "python3.9")
 (add-hook 'flycheck-mode-hook #'flycheck-pycheckers-setup)
 (add-hook 'python-mode-hook 'flycheck-mode)
-
 
 ;;; json
 (require 'json)
@@ -308,17 +317,6 @@ Otherwise `c-or-c++-mode' decides."
 
 (add-hook 'go-mode-hook 'flycheck-mode)
 (add-hook 'go-mode-hook #'lsp)
-
-
-;;; java
-
-(require 'lsp-java)
-
-;; enable java
-(add-hook 'java-mode-hook #'lsp)
-
-(dap-auto-configure-mode)
-
 
 ;;; yang
 
