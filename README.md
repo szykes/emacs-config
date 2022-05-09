@@ -52,13 +52,13 @@ $ TERM=xterm-24bit emacs
 ## Misc of emacs
 
 - ```auto-compile``` (with default config)
-- ```ivy*``` (with default config and built-in fuzzy logic)
+- ```ivy``` (with default config and built-in fuzzy logic)
 - ```helpful``` (with default config)
 - ```anzu``` (with default config)
 - ```magit``` (with default config)
 - ```lice``` (with default config)
 - ```which-key``` (with default config)
-- ```*projectile``` (with hybrid and chached finding files)
+- ```projectile``` (with hybrid and chached finding files)
 - ```lsp-mode``` (with default config)
 - turned off menubar
 - highlight any kind of matching bracket
@@ -80,10 +80,6 @@ Advanced stuff:
 - ```company``` (with ```lsp-mode``` integration)
 - ```flycheck``` (with ```lsp-mode``` integration)
 - ```yasnippet``` (with very limited snippets right now, try ```yas-describe-table-by-namehash```)
-
-## Java
-
-Install: [Eclipse JDT Language Server](https://github.com/emacs-lsp/lsp-java#eclipse-jdt-language-server)
 
 ## YANG
 
