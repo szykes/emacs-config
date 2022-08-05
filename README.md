@@ -16,6 +16,14 @@ Some points why you should use this:
   * [elisp](#elisp)
   * [C and Cpp](#C-and-Cpp)
 
+## Build emacs 28.1
+
+```
+./configure --prefix=/path/to/wherever/ --with-x-toolkit=no --with-xpm=ifavailable --with-gif=ifavailable --with-json --with-native-compilation
+make -j$(nproc)
+make install
+```
+
 ## Custom stuff
 
 The ```custom-set-variables``` and ```custom-set-faces``` have been moved to ```config/custom.el```.
