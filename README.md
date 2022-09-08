@@ -49,6 +49,12 @@ $ tic -x -o ~/.terminfo terminfo-custom.src
 $ TERM=xterm-24bit emacs
 ```
 
+## MacOS
+
+Make Meta working with left Option in iTerm2: iTerm2 -> Preferences -> Profiles -> Keys tab -> Left Option Key: Esc+.
+
+Make set-mark-command (C-SPC) working: Preferences -> Keyboard -> Shortcuts -> Input Sources -> Select the previous input source and uncheck.
+
 ## Misc of emacs
 
 - ```auto-compile``` (with default config)
