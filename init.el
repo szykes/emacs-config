@@ -154,6 +154,8 @@
 (counsel-projectile-mode)
 ;; more info about the keybindings: https://github.com/ericdanan/counsel-projectile
 
+(setq lsp-use-plists 't)
+
 (require 'lsp-mode)
 
 ;; you need to declare .clang-tidy file for the specific project. Otherwise the clang-tidy will not work.
@@ -215,6 +217,7 @@ will be killed."
             (kill-buffer buf)
             (message "Killed non-existing/unreadable file buffer: %s" filename))))))
   (message "Finished reverting buffers containing unmodified files."))
+
 
 
 ;;; elisp
