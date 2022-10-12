@@ -160,6 +160,7 @@
 
 ;; you need to declare .clang-tidy file for the specific project. Otherwise the clang-tidy will not work.
 
+
 (require 'lsp-ui)
 ;; `xref-pop-marker-stack' works with lsp-ui
 (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
@@ -277,17 +278,34 @@ Otherwise `c-or-c++-mode' decides."
 
 (require 'lsp-pyright)
 
-(setq lsp-pyright-python-executable-cmd "python3.9")
+;; Prerequisites for Python LSP:
+;; https://emacs-lsp.github.io/lsp-mode/page/lsp-pylsp/
+;; https://emacs-lsp.github.io/lsp-pyright/
 
 (setq lsp-pyright-use-library-code-for-types t) ;; set this to nil if getting too many false positive type errors
 (setq lsp-pyright-stub-path (concat (getenv "HOME") "/tools/python-type-stubs"))
-(add-hook 'python-mode-hook #'lsp)
 
-(setq-local flycheck-python-pylint-executable "python3.9")
-(setq-local flycheck-python-mypy-executable "python3.9")
-(setq-local flycheck-python-flake8-executable "python3.9")
-(add-hook 'flycheck-mode-hook #'flycheck-pycheckers-setup)
-(add-hook 'python-mode-hook 'flycheck-mode)
+;; Prerequisites for Python checkers (they must be on PATH):
+;; https://pypi.org/project/flake8/
+;; https://pypi.org/project/mypy/
+;; https://pypi.org/project/pylint/
+;; https://pypi.org/project/pycompilation/
+
+;; Issue: env: python: No such file or directory
+;; This usually happens when only python3* is available.
+;; Fix: change the shebang of .emacs.d/elpa/flycheck-pycheckers-20220923.2250/bin/pycheckers.py to python3
+
+(with-eval-after-load 'flycheck
+  (add-hook 'flycheck-mode-hook #'flycheck-pycheckers-setup))
+
+;; flycheck will rely on flycheck-pycheckers instead of lsp-diagnostic
+(add-hook 'python-mode-hook
+  (lambda ()
+    (make-local-variable 'lsp-diagnostic-package)
+    (setq lsp-diagnostic-package :none)
+    ;; theoratically the following two lines not needed but it does not work well without them
+    (lsp)
+    (flycheck-mode)))
 
 ;;; json
 (require 'json)
