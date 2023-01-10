@@ -57,7 +57,7 @@
 (defvar desktop-path                (list desktop-dirname))
 (defvar desktop-save                t)
 (defvar desktop-load-locked-desktop nil)
-(defvar desktop-auto-save-timeout   30)
+(defvar desktop-auto-save-timeout   10)
 (defvar desktop-base-lock-name
   (convert-standard-filename (format ".emacs.desktop.lock-%d" (emacs-pid))))
 (desktop-save-mode 1)
