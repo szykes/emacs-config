@@ -19,7 +19,7 @@
    '("a1289424bbc0e9f9877aa2c9a03c7dfd2835ea51d8781a0bf9e2415101f70a7e" default))
  '(js-indent-level 2)
  '(json-reformat:indent-width 2)
- '(lsp-clients-clangd-args '("--background-index" "--clang-tidy" "-j=80"))
+ '(lsp-clients-clangd-args '("--background-index" "--clang-tidy" "-j=14" "--header-insertion=never"))
  '(lsp-file-watch-threshold 10000)
  '(lsp-ui-peek-enable t)
  '(package-selected-packages
