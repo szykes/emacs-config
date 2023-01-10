@@ -129,7 +129,7 @@
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;; the indentation shall be space only
-(setq indent-tabs-mode nil)
+(setq-default indent-tabs-mode nil)
 ;; expect in the makefiles
 (add-hook 'makefile-mode-hook '(lambda () (setq indent-tabs-mode t)))
 
