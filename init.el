@@ -160,6 +160,7 @@
 
 ;; you need to declare .clang-tidy file for the specific project. Otherwise the clang-tidy will not work.
 
+(setq lsp-file-watch-threshold 5000)
 
 (require 'lsp-ui)
 ;; `xref-pop-marker-stack' works with lsp-ui
