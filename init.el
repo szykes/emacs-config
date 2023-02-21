@@ -43,6 +43,16 @@
   (setq mac-option-modifier 'none)
   (setq mac-command-modifier 'meta))
 
+;; https://www.blogbyben.com/2022/05/gotcha-emacs-on-mac-os-too-many-files.html
+(when (eq system-type 'darwin)
+  (defun file-notify-rm-all-watches ()
+  "Remove all existing file notification watches from Emacs."
+  (interactive)
+  (maphash
+   (lambda (key _value)
+     (file-notify-rm-watch key))
+   file-notify-descriptors)))
+
 ;; no need to have menubar
 (menu-bar-mode -1)
 
