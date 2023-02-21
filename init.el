@@ -318,6 +318,11 @@ Otherwise `c-or-c++-mode' decides."
     (lsp)
     (flycheck-mode)))
 
+(add-hook 'python-mode-hook
+  (lambda ()
+    (setq indent-tabs-mode nil)
+    (setq python-indent-offset 4)))
+
 ;;; json
 (require 'json)
 
