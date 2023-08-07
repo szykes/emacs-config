@@ -13,7 +13,7 @@
    [default default default italic underline success warning error])
  '(ansi-color-names-vector
    ["black" "red3" "ForestGreen" "yellow3" "blue" "magenta3" "DeepSkyBlue" "gray50"])
- '(c-basic-offset 2)
+ '(c-basic-offset 2 t)
  '(custom-enabled-themes '(manoj-dark))
  '(custom-safe-themes
    '("a1289424bbc0e9f9877aa2c9a03c7dfd2835ea51d8781a0bf9e2415101f70a7e" default))

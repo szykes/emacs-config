@@ -63,6 +63,8 @@
     (message "Create %s" desktop-dirname)
     (make-directory desktop-dirname)))
 (defvar desktop-base-file-name      "emacs.desktop")
+(when (not (file-regular-p (expand-file-name desktop-base-file-name desktop-dirname)))
+  (write-region "" nil (expand-file-name desktop-base-file-name desktop-dirname)))
 (defvar desktop-base-lock-name      "lock")
 (defvar desktop-path                (list desktop-dirname))
 (defvar desktop-save                t)
