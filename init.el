@@ -232,6 +232,14 @@ will be killed."
             (message "Killed non-existing/unreadable file buffer: %s" filename))))))
   (message "Finished reverting buffers containing unmodified files."))
 
+;; https://github.com/flycheck/flycheck/issues/1762
+(defvar-local my/flycheck-local-cache nil)
+
+(defun my/flycheck-checker-get (fn checker property)
+  (or (alist-get property (alist-get checker my/flycheck-local-cache))
+      (funcall fn checker property)))
+
+(advice-add 'flycheck-checker-get :around 'my/flycheck-checker-get)
 
 
 ;;; elisp
@@ -354,8 +362,16 @@ Otherwise `c-or-c++-mode' decides."
 (add-hook 'go-mode-hook 'company-mode)
 ;(define-key c-mode-base-map (kbd "<C-tab>") (function company-complete))
 
-(add-hook 'go-mode-hook 'flycheck-mode)
+(eval-after-load 'flycheck
+  '(add-hook 'flycheck-mode-hook #'flycheck-golangci-lint-setup))
+
+(add-hook 'lsp-managed-mode-hook
+          (lambda ()
+            (when (derived-mode-p 'go-mode)
+              (setq my/flycheck-local-cache '((lsp . ((next-checkers . (golangci-lint)))))))))
+
 (add-hook 'go-mode-hook #'lsp)
+(add-hook 'go-mode-hook 'flycheck-mode)
 
 ;;; yang
 
