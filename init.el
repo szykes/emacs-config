@@ -166,6 +166,7 @@
 (counsel-projectile-mode)
 ;; more info about the keybindings: https://github.com/ericdanan/counsel-projectile
 
+;; https://emacs-lsp.github.io/lsp-mode/page/performance/#use-plists-for-deserialization
 (setq lsp-use-plists 't)
 
 (require 'lsp-mode)
