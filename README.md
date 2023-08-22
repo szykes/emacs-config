@@ -16,9 +16,17 @@ Some points why you should use this:
   * [elisp](#elisp)
   * [C and Cpp](#C-and-Cpp)
 
-## Build emacs 28.1
-
+## Build emacs 29.1
+On macOS: 
 ```
+brew tap d12frosted/emacs-plus
+brew install emacs-plus@29 --without-cocoa --with-native-comp --with-poll
+```
+More details: [homebrew-emacs-plus](https://github.com/d12frosted/homebrew-emacs-plus)
+
+From source:
+```
+export LSP_USE_PLISTS=true
 ./configure --prefix=/path/to/wherever/ --with-x-toolkit=no --with-xpm=ifavailable --with-gif=ifavailable --with-json --with-native-compilation
 make -j$(nproc)
 make install
