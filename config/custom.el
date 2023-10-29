@@ -24,7 +24,7 @@
  '(lsp-file-watch-threshold 10000)
  '(lsp-ui-peek-enable t)
  '(package-selected-packages
-   '(rg flycheck-golangci-lint gn-mode dockerfile-mode lsp-pyright magit groovy-mode yaml-mode flycheck-yang yang-mode go-mode amx which-key lsp-ui auto-compile counsel counsel-projectile counsel-test ivy lsp-ivy swiper lsp-mode projectile ztree anzu yasnippet company-flx helpful cmake-font-lock flycheck-pycheckers python-mode flycheck company transient lice json-mode dash)))
+   '(protobuf-mode rg flycheck-golangci-lint gn-mode dockerfile-mode lsp-pyright magit groovy-mode yaml-mode flycheck-yang yang-mode go-mode amx which-key lsp-ui auto-compile counsel counsel-projectile counsel-test ivy lsp-ivy swiper lsp-mode projectile ztree anzu yasnippet company-flx helpful cmake-font-lock flycheck-pycheckers python-mode flycheck company transient lice json-mode dash)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

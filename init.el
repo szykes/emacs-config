@@ -404,5 +404,18 @@ Otherwise `c-or-c++-mode' decides."
      (define-key yaml-mode-map "\C-m" 'newline-and-indent)))
 
 
+;;; protobuf
+
+;; https://github.com/protocolbuffers/protobuf/blob/main/editors/protobuf-mode.el
+(require 'protobuf-mode)
+
+(defconst my-protobuf-style
+  '((c-basic-offset . 2)
+    (indent-tabs-mode . nil)))
+
+(add-hook 'protobuf-mode-hook
+          (lambda () (c-add-style "my-style" my-protobuf-style t)))
+
+
 (provide 'init.el)
 ;;; init.el ends here
