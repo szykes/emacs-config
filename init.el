@@ -145,7 +145,14 @@
 ;; expect in the makefiles
 (add-hook 'makefile-mode-hook '(lambda () (setq indent-tabs-mode t)))
 
-;; TODO magit & its ivy
+
+;;; magit
+
+(require 'magit)
+(setq magit-branch-read-upstream-first 'fallback)
+
+
+;;; projectile
 
 (require 'projectile)
 (projectile-mode +1)
