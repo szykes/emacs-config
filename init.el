@@ -420,6 +420,11 @@ Otherwise `c-or-c++-mode' decides."
 (add-hook 'protobuf-mode-hook
           (lambda () (c-add-style "my-style" my-protobuf-style t)))
 
+;; https://www.flycheck.org/en/latest/languages.html#syntax-checker-protobuf-protoc
+(add-hook 'protobuf-mode
+          (lambda ()
+            (flycheck-select-checker 'protobuf-protoc)
+            (flycheck-mode 1)))
 
 (provide 'init.el)
 ;;; init.el ends here
