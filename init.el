@@ -304,7 +304,11 @@ Otherwise `c-or-c++-mode' decides."
 ;(add-to-list 'company-backends '(company-shell company-shell-env))
 ;(add-hook 'shell-script-mode 'company-mode)
 
-(add-hook 'shell-script-mode 'flycheck-mode)
+(defvar sh-basic-offset 2)
+(defvar sh-indentation 2)
+
+;; install shellcheck
+(add-hook 'sh-mode-hook 'flycheck-mode)
 
 
 ;; python
