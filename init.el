@@ -426,5 +426,15 @@ Otherwise `c-or-c++-mode' decides."
             (flycheck-select-checker 'protobuf-protoc)
             (flycheck-mode 1)))
 
+;;; Dockerfile
+
+;; yasnippet for proper LSP working
+(add-hook 'dockerfile-mode-hook #'yas-minor-mode)
+;; https://emacs-lsp.github.io/lsp-mode/page/lsp-dockerfile/
+(add-hook 'dockerfile-mode-hook #'lsp)
+
+;; https://www.flycheck.org/en/latest/languages.html#dockerfile
+(add-hook 'dockerfile-mode-hook #'flycheck-mode)
+
 (provide 'init.el)
 ;;; init.el ends here
