@@ -141,7 +141,6 @@
 
 ;;; common
 
-;; delete trailing whitespace at file save
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;; the indentation shall be space only
@@ -182,14 +181,13 @@
 
 (require 'lsp-mode)
 
-;; you need to declare .clang-tidy file for the specific project. Otherwise the clang-tidy will not work.
-
-(setq lsp-file-watch-threshold 5000)
+(setq lsp-file-watch-threshold 20000)
 
 (require 'lsp-ui)
-;; `xref-pop-marker-stack' works with lsp-ui
+;; `xref-pop-marker-stack' (M-,) works with lsp-ui
 (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
 (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)
+(define-key lsp-ui-mode-map (kbd "M-_") #'lsp-ui-peek-find-implementation)
 
 ;; showing always lsp ui doc is annoying
 (setq lsp-ui-doc-enable nil)
@@ -341,7 +339,7 @@ Otherwise `c-or-c++-mode' decides."
     (make-local-variable 'lsp-diagnostic-package)
     (setq lsp-diagnostic-package :none)
     ;; theoratically the following two lines not needed but it does not work well without them
-    (lsp)
+    (lsp-deferred)
     (flycheck-mode)))
 
 (add-hook 'python-mode-hook
@@ -431,10 +429,20 @@ Otherwise `c-or-c++-mode' decides."
 ;; yasnippet for proper LSP working
 (add-hook 'dockerfile-mode-hook #'yas-minor-mode)
 ;; https://emacs-lsp.github.io/lsp-mode/page/lsp-dockerfile/
-(add-hook 'dockerfile-mode-hook #'lsp)
+(add-hook 'dockerfile-mode-hook #'lsp-deferred)
 
 ;; https://www.flycheck.org/en/latest/languages.html#dockerfile
 (add-hook 'dockerfile-mode-hook #'flycheck-mode)
+
+
+;;; terraform
+
+;; https://www.flycheck.org/en/latest/languages.html#terraform
+
+
+;;; kubernetes
+
+
 
 (provide 'init.el)
 ;;; init.el ends here
