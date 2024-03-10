@@ -405,6 +405,14 @@ Otherwise `c-or-c++-mode' decides."
   '(lambda ()
      (define-key yaml-mode-map "\C-m" 'newline-and-indent)))
 
+;; https://emacs-lsp.github.io/lsp-mode/page/lsp-yaml/
+(add-hook 'yaml-mode-hook #'lsp-deferred)
+
+;; https://www.flycheck.org/en/latest/languages.html#syntax-checker-yaml-yamllint
+;; brew install yamllint
+(add-hook 'yaml-mode-hook (lambda ()
+            (flycheck-select-checker 'yaml-yamllint)
+            (flycheck-mode 1)))
 
 ;;; protobuf
 
