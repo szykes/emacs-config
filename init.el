@@ -348,8 +348,17 @@ Otherwise `c-or-c++-mode' decides."
     (setq python-indent-offset 4)))
 
 ;;; json
-(require 'json)
 
+
+(require 'json)
+(custom-set-variables '(js-indent-level 2))
+(custom-set-variables '(json-reformat:indent-width 2))
+
+;; https://www.flycheck.org/en/latest/languages.html#syntax-checker-json-python-json
+(add-hook 'json-mode-hook
+          (lambda ()
+            (flycheck-select-checker 'json-python-json)
+            (flycheck-mode 1)))
 
 ;;; cmake
 
