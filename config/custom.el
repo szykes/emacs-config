@@ -16,14 +16,15 @@
  '(custom-enabled-themes '(manoj-dark))
  '(custom-safe-themes
    '("a1289424bbc0e9f9877aa2c9a03c7dfd2835ea51d8781a0bf9e2415101f70a7e" default))
+ '(flycheck-golangci-lint-disable-all t)
  '(js-indent-level 2)
  '(json-reformat:indent-width 2)
  '(lsp-clients-clangd-args
    '("--background-index" "--clang-tidy" "-j=3" "--header-insertion=never"))
- '(lsp-file-watch-threshold 10000)
+ '(lsp-file-watch-threshold 20000)
  '(lsp-ui-peek-enable t)
  '(package-selected-packages
-   '(protobuf-mode rg flycheck-golangci-lint gn-mode dockerfile-mode lsp-pyright magit groovy-mode yaml-mode flycheck-yang yang-mode go-mode amx which-key lsp-ui auto-compile counsel counsel-projectile counsel-test ivy lsp-ivy swiper lsp-mode projectile ztree anzu yasnippet company-flx helpful cmake-font-lock flycheck-pycheckers python-mode flycheck company transient lice json-mode dash))
+   '(kubedoc kubernetes f editorconfig protobuf-mode rg flycheck-golangci-lint gn-mode dockerfile-mode lsp-pyright magit groovy-mode yaml-mode flycheck-yang yang-mode go-mode amx which-key lsp-ui auto-compile counsel counsel-projectile counsel-test ivy lsp-ivy swiper lsp-mode projectile ztree anzu yasnippet company-flx helpful cmake-font-lock flycheck-pycheckers python-mode flycheck company transient lice json-mode dash))
  '(warning-suppress-log-types '((comp)))
  '(warning-suppress-types '((auto-save) (comp))))
 (custom-set-faces

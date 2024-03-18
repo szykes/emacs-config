@@ -4,6 +4,14 @@
 
 ;;; Code:
 
+;;; General
+
+(defun is-executable-available (executable-name)
+  "Check if an EXECUTABLE-NAME is available on the PATH."
+  (if (executable-find executable-name)
+      t
+    nil))
+
 ;;; package & file
 
 (require 'package)
@@ -249,6 +257,21 @@ will be killed."
 
 (advice-add 'flycheck-checker-get :around 'my/flycheck-checker-get)
 
+
+;;; GitHub Copilot
+
+;; https://github.com/copilot-emacs/copilot.el
+
+;; install nodejs
+(when (is-executable-available "npm")
+  (add-to-list 'load-path (concat (getenv "HOME") "/.emacs.d/copilot.el-main"))
+  (require 'copilot)
+
+  (add-hook 'prog-mode-hook 'copilot-mode)
+  (define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion)
+  (define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion)
+  (add-to-list 'copilot-major-mode-alist
+               '("sh" . "shellscript")))
 
 ;;; elisp
 
