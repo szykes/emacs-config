@@ -325,8 +325,9 @@ Otherwise `c-or-c++-mode' decides."
 (defvar sh-basic-offset 2)
 (defvar sh-indentation 2)
 
-;; https://emacs-lsp.github.io/lsp-mode/page/lsp-bash/
-(add-hook 'sh-mode-hook #'lsp-deferred)
+(when (is-executable-available "npm")
+  ;; https://emacs-lsp.github.io/lsp-mode/page/lsp-bash/
+  (add-hook 'sh-mode-hook #'lsp-deferred))
 
 ;; install shellcheck
 (add-hook 'sh-mode-hook 'flycheck-mode)
@@ -439,8 +440,9 @@ Otherwise `c-or-c++-mode' decides."
   '(lambda ()
      (define-key yaml-mode-map "\C-m" 'newline-and-indent)))
 
-;; https://emacs-lsp.github.io/lsp-mode/page/lsp-yaml/
-(add-hook 'yaml-mode-hook #'lsp-deferred)
+(when (is-executable-available "npm")
+  ;; https://emacs-lsp.github.io/lsp-mode/page/lsp-yaml/
+  (add-hook 'yaml-mode-hook #'lsp-deferred))
 
 ;; https://www.flycheck.org/en/latest/languages.html#syntax-checker-yaml-yamllint
 ;; brew install yamllint
@@ -468,10 +470,11 @@ Otherwise `c-or-c++-mode' decides."
 
 ;;; Dockerfile
 
-;; yasnippet for proper LSP working
-(add-hook 'dockerfile-mode-hook #'yas-minor-mode)
-;; https://emacs-lsp.github.io/lsp-mode/page/lsp-dockerfile/
-(add-hook 'dockerfile-mode-hook #'lsp-deferred)
+(when (is-executable-available "npm")
+  ;; yasnippet for proper LSP working
+  (add-hook 'dockerfile-mode-hook #'yas-minor-mode)
+  ;; https://emacs-lsp.github.io/lsp-mode/page/lsp-dockerfile/
+  (add-hook 'dockerfile-mode-hook #'lsp-deferred))
 
 ;; https://www.flycheck.org/en/latest/languages.html#dockerfile
 (add-hook 'dockerfile-mode-hook #'flycheck-mode)
