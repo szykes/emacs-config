@@ -262,11 +262,11 @@ will be killed."
 
 ;; https://github.com/copilot-emacs/copilot.el
 
-;; install nodejs
 (when (is-executable-available "npm")
   (add-to-list 'load-path (concat (getenv "HOME") "/.emacs.d/copilot.el-main"))
   (require 'copilot)
 
+  (setq copilot-indent-offset-warning-disable t)
   (add-hook 'prog-mode-hook 'copilot-mode)
   (define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion)
   (define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion)
