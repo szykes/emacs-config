@@ -181,7 +181,7 @@
 
 (require 'lsp-mode)
 
-(setq lsp-file-watch-threshold 20000)
+(setq lsp-file-watch-threshold 100000)
 
 (require 'lsp-ui)
 ;; `xref-pop-marker-stack' (M-,) works with lsp-ui
@@ -193,8 +193,6 @@
 (setq lsp-ui-doc-enable nil)
 ;; sideline seems not work in no-window mode
 (setq lsp-ui-sideline-enable nil)
-
-;;(add-hook 'lsp-mode-hook 'lsp-ui-mode)
 
 ;; lsp-ivy
 ;; call `lsp-ivy-workspace-symbol' or `lsp-ivy-global-workspace-symbol' to find a symbol
@@ -295,15 +293,17 @@ Otherwise `c-or-c++-mode' decides."
 ;(define-key c-mode-base-map (kbd "<C-tab>") (function company-complete))
 
 (add-hook 'c-mode-common-hook 'flycheck-mode)
-(add-hook 'c-mode-common-hook #'lsp)
+
+;; you need to declare .clang-tidy file for the specific project. Otherwise the clang-tidy will not work.
+(add-hook 'c-mode-common-hook #'lsp-deferred)
 
 ;;; shell script
 
-;(add-to-list 'company-backends '(company-shell company-shell-env))
-;(add-hook 'shell-script-mode 'company-mode)
-
 (defvar sh-basic-offset 2)
 (defvar sh-indentation 2)
+
+;; https://emacs-lsp.github.io/lsp-mode/page/lsp-bash/
+(add-hook 'sh-mode-hook #'lsp-deferred)
 
 ;; install shellcheck
 (add-hook 'sh-mode-hook 'flycheck-mode)
@@ -378,22 +378,24 @@ Otherwise `c-or-c++-mode' decides."
     (add-hook 'before-save-hook #'lsp-format-buffer t t)
     (add-hook 'before-save-hook #'lsp-organize-imports t t)))
 
-;; enable yasnippet mode
 (add-hook 'go-mode-hook #'yas-minor-mode)
 
-;; enable company mode
 (add-hook 'go-mode-hook 'company-mode)
 ;(define-key c-mode-base-map (kbd "<C-tab>") (function company-complete))
 
+;;(custom-set-variables '(flycheck-golangci-lint-tests t))
+;;(custom-set-variables '(flycheck-golangci-allow-serial-runners t))
+;;(custom-set-variables '(flycheck-golangci-lint-enable-linters "asciicheck,cyclop"))
+
+;; https://github.com/nametake/golangci-lint-langserver
+
+;; https://github.com/weijiangan/flycheck-golangci-lint
 (eval-after-load 'flycheck
   '(add-hook 'flycheck-mode-hook #'flycheck-golangci-lint-setup))
 
-(add-hook 'lsp-managed-mode-hook
-          (lambda ()
-            (when (derived-mode-p 'go-mode)
-              (setq my/flycheck-local-cache '((lsp . ((next-checkers . (golangci-lint)))))))))
+(add-hook 'go-mode-hook #'lsp-deferred)
 
-(add-hook 'go-mode-hook #'lsp)
+;; https://www.flycheck.org/en/latest/languages.html#go
 (add-hook 'go-mode-hook 'flycheck-mode)
 
 ;;; yang
