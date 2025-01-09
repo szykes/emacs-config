@@ -261,21 +261,21 @@ will be killed."
 ;;; GitHub Copilot
 
 ;; https://github.com/copilot-emacs/copilot.el
+;; To enable GH Copilot, just donwload the `copilot.el-main` in `~/.emacs.d`
 
-(when (is-executable-available "npm")
+(defun execute-if-gh-copilot-enabled (fn)
+  "Execute the lambda function FN if the `copilot.el-main' is available."
+  (if (file-exists-p "copilot.el-main")
+      (funcall fn)))
+
+(execute-if-gh-copilot-enabled (lambda ()(
   (add-to-list 'load-path (concat (getenv "HOME") "/.emacs.d/copilot.el-main"))
   (require 'copilot)
 
   (setq copilot-max-characters 500000)
   (add-hook 'prog-mode-hook 'copilot-mode)
   (define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion)
-  (define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion))
-
-(defun execute-if-npm-available (fn)
-  "Execute the lambda function FN if the 'npm' executable is available."
-  (if (is-executable-available "npm")
-      (funcall fn)))
-
+  (define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion))))
 
 ;;; elisp
 
@@ -284,7 +284,7 @@ will be killed."
 (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
 (add-hook 'emacs-lisp-mode-hook 'yas-minor-mode)
 
-(execute-if-npm-available (lambda () (add-to-list 'copilot-indentation-alist '(emacs-lisp-mode 2))))
+(execute-if-gh-copilot-enabled (lambda () (add-to-list 'copilot-indentation-alist '(emacs-lisp-mode 2))))
 
 ;;; all C* languages
 
@@ -313,8 +313,8 @@ Otherwise `c-or-c++-mode' decides."
 (defvar c-default-style "linux")
 (defvar c-basic-offset 2)
 
-(execute-if-npm-available (lambda () (add-to-list 'copilot-indentation-alist '(c-mode 2))))
-(execute-if-npm-available (lambda () (add-to-list 'copilot-indentation-alist '(c++-mode 2))))
+(execute-if-gh-copilot-enabled (lambda () (add-to-list 'copilot-indentation-alist '(c-mode 2))))
+(execute-if-gh-copilot-enabled (lambda () (add-to-list 'copilot-indentation-alist '(c++-mode 2))))
 
 ;; enable yasnippet mode
 (add-hook 'c-mode-common-hook #'yas-minor-mode)
@@ -333,7 +333,7 @@ Otherwise `c-or-c++-mode' decides."
 (defvar sh-basic-offset 2)
 (defvar sh-indentation 2)
 
-(execute-if-npm-available (lambda () (add-to-list 'copilot-indentation-alist '(sh-mode 2))))
+(execute-if-gh-copilot-enabled (lambda () (add-to-list 'copilot-indentation-alist '(sh-mode 2))))
 
 (when (is-executable-available "npm")
   ;; https://emacs-lsp.github.io/lsp-mode/page/lsp-bash/
@@ -381,7 +381,7 @@ Otherwise `c-or-c++-mode' decides."
     (setq indent-tabs-mode nil)
     (setq python-indent-offset 4)))
 
-(execute-if-npm-available (lambda () (add-to-list 'copilot-indentation-alist '(python-mode 4))))
+(execute-if-gh-copilot-enabled (lambda () (add-to-list 'copilot-indentation-alist '(python-mode 4))))
 
 ;;; json
 
@@ -389,7 +389,7 @@ Otherwise `c-or-c++-mode' decides."
 (require 'json)
 (custom-set-variables '(js-indent-level 2))
 (custom-set-variables '(json-reformat:indent-width 2))
-(execute-if-npm-available (lambda () (add-to-list 'copilot-indentation-alist '(json-mode 2))))
+(execute-if-gh-copilot-enabled (lambda () (add-to-list 'copilot-indentation-alist '(json-mode 2))))
 
 ;; https://www.flycheck.org/en/latest/languages.html#syntax-checker-json-python-json
 (add-hook 'json-mode-hook
@@ -404,7 +404,7 @@ Otherwise `c-or-c++-mode' decides."
 (add-hook 'cmake-mode-hook 'cmake-font-lock-activate)
 (add-hook 'cmake-mode-hook 'company-mode)
 
-(execute-if-npm-available (lambda () (add-to-list 'copilot-indentation-alist '(cmake-mode 2))))
+(execute-if-gh-copilot-enabled (lambda () (add-to-list 'copilot-indentation-alist '(cmake-mode 2))))
 
 ;;; go
 
@@ -416,7 +416,7 @@ Otherwise `c-or-c++-mode' decides."
     (add-hook 'before-save-hook #'lsp-format-buffer t t)
     (add-hook 'before-save-hook #'lsp-organize-imports t t)))
 
-(execute-if-npm-available (lambda () (add-to-list 'copilot-indentation-alist '(go-mode 2))))
+(execute-if-gh-copilot-enabled (lambda () (add-to-list 'copilot-indentation-alist '(go-mode 2))))
 
 (add-hook 'go-mode-hook #'yas-minor-mode)
 
@@ -442,7 +442,7 @@ Otherwise `c-or-c++-mode' decides."
 
 (add-hook 'yang-mode-hook #'flycheck-mode)
 
-(execute-if-npm-available (lambda () (add-to-list 'copilot-indentation-alist '(yang-mode 2))))
+(execute-if-gh-copilot-enabled (lambda () (add-to-list 'copilot-indentation-alist '(yang-mode 2))))
 
 ;;; yaml
 
@@ -450,7 +450,7 @@ Otherwise `c-or-c++-mode' decides."
 (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.yaml\\'" . yaml-mode))
 
-(execute-if-npm-available (lambda () (add-to-list 'copilot-indentation-alist '(yaml-mode 2))))
+(execute-if-gh-copilot-enabled (lambda () (add-to-list 'copilot-indentation-alist '(yaml-mode 2))))
 
 ;; Unlike python-mode, this mode follows the Emacs convention of not
 ;; binding the ENTER key to `newline-and-indent'.  To get this
@@ -478,7 +478,7 @@ Otherwise `c-or-c++-mode' decides."
   '((c-basic-offset . 2)
     (indent-tabs-mode . nil)))
 
-(execute-if-npm-available (lambda () (add-to-list 'copilot-indentation-alist '(protobuf-mode 2))))
+(execute-if-gh-copilot-enabled (lambda () (add-to-list 'copilot-indentation-alist '(protobuf-mode 2))))
 
 (add-hook 'protobuf-mode-hook
           (lambda () (c-add-style "my-style" my-protobuf-style t)))
@@ -491,7 +491,7 @@ Otherwise `c-or-c++-mode' decides."
 
 ;;; Dockerfile
 
-(execute-if-npm-available (lambda () (add-to-list 'copilot-indentation-alist '(dockerfile-mode 2))))
+(execute-if-gh-copilot-enabled (lambda () (add-to-list 'copilot-indentation-alist '(dockerfile-mode 2))))
 
 (when (is-executable-available "npm")
   ;; yasnippet for proper LSP working
