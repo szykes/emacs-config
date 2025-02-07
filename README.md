@@ -82,11 +82,11 @@ More details: [homebrew-emacs-plus](https://github.com/d12frosted/homebrew-emacs
 
 From source:
 ```
-# Ubuntu 22.04
-sudo apt-get install build-essential pkg-config libz-dev libgccjit-11-dev libgnutls28-dev libjansson-dev libncurses5-dev
+# Ubuntu 24.04
+sudo apt-get install build-essential pkg-config libz-dev libgccjit-13-dev libgnutls28-dev libjansson-dev libncurses5-dev texinfo
 
 export LSP_USE_PLISTS=true
-./configure --prefix=/path/to/wherever/ --with-x-toolkit=no --with-xpm=ifavailable --with-gif=ifavailable --with-json --with-native-compilation
+./configure --prefix=/path/to/wherever/ --with-x-toolkit=no --without-x --with-xpm=ifavailable --with-gif=ifavailable --with-json --with-native-compilation
 make -j$(nproc)
 make install
 ```
