@@ -76,7 +76,7 @@ Keys tab:
 On macOS:
 ```
 brew tap d12frosted/emacs-plus
-brew install emacs-plus@29 --without-cocoa --with-native-comp
+brew install emacs-plus@30 --without-cocoa
 ```
 More details: [homebrew-emacs-plus](https://github.com/d12frosted/homebrew-emacs-plus)
 
