@@ -248,6 +248,13 @@ will be killed."
             (message "Killed non-existing/unreadable file buffer: %s" filename))))))
   (message "Finished reverting buffers containing unmodified files."))
 
+(defun count-buffers (&optional display-anyway)
+  "Display or return the number of buffers."
+  (interactive)
+  (let ((buf-count (length (buffer-list))))
+    (if (or (interactive-p) display-anyway)
+    (message "%d buffers in this Emacs" buf-count)) buf-count))
+
 ;; https://github.com/flycheck/flycheck/issues/1762
 (defvar-local my/flycheck-local-cache nil)
 
