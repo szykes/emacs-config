@@ -479,6 +479,7 @@ Otherwise `c-or-c++-mode' decides."
 ;;; protobuf
 
 ;; https://github.com/protocolbuffers/protobuf/blob/main/editors/protobuf-mode.el
+;; install: https://github.com/bufbuild/buf
 (require 'protobuf-mode)
 
 (defconst my-protobuf-style
