@@ -72,6 +72,42 @@ Terminal tab:
 Keys tab:
 * General subtab: Left Option key: Esc+
 
+### Fixing `Too many open files` issue
+
+```
+sudo nano /Library/LaunchDaemons/limit.maxfiles.plist
+```
+
+Fill with:
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+    "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>limit.maxfiles</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>launchctl</string>
+        <string>limit</string>
+        <string>maxfiles</string>
+        <string>65535</string>
+        <string>102400</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+</dict>
+</plist>
+```
+
+```
+sudo chown root:wheel /Library/LaunchDaemons/limit.maxfiles.plist
+sudo chmod 644 /Library/LaunchDaemons/limit.maxfiles.plist
+```
+
+Then reboot.
+
 ## Build emacs 29
 On macOS:
 ```
