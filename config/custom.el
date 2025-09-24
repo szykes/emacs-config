@@ -25,7 +25,6 @@
  '(lsp-clients-clangd-args
    '("--background-index" "--clang-tidy" "-j=3"
      "--header-insertion=never"))
- '(lsp-file-watch-threshold 20000)
  '(lsp-ui-peek-enable t)
  '(package-selected-packages
    '(amx anzu auto-compile cmake-font-lock company company-flx counsel

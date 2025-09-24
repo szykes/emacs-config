@@ -174,7 +174,7 @@
 ;; `counsel-git-grep' is used the search in files
 
 (setq projectile-enable-caching t)
-(setq projectile-indexing-method 'hybrid)
+(setq projectile-indexing-method 'alien)
 ;; .projectile file in the project will filter the findings
 
 ;; C-c p C-h for keybinding help
@@ -189,7 +189,7 @@
 
 (require 'lsp-mode)
 
-(setq lsp-file-watch-threshold 100000)
+(setq lsp-file-watch-threshold 5000)
 
 (require 'lsp-ui)
 ;; `xref-pop-marker-stack' (M-,) works with lsp-ui
@@ -263,7 +263,6 @@ will be killed."
       (funcall fn checker property)))
 
 (advice-add 'flycheck-checker-get :around 'my/flycheck-checker-get)
-
 
 ;;; GitHub Copilot
 
