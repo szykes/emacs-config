@@ -68,6 +68,9 @@
 ;; https://www.gnu.org/software/emacs/manual/html_node/efaq/Displaying-the-current-line-or-column.html
 (setq column-number-mode t)
 
+;; stop creating ~ files
+(setq make-backup-files nil)
+
 ;; automatically save and restore sessions
 ;; server-client usage is preferred
 (when (not (file-directory-p desktop-dirname))
