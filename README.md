@@ -72,6 +72,13 @@ Terminal tab:
 Keys tab:
 * General subtab: Left Option key: Esc+
 
+### Make `gcc` work
+
+```
+mkdir -p ~/.emacs.d/bin
+ln -s /opt/homebrew/bin/gcc-15 ~/.emacs.d/bin/gcc
+```
+
 ### Fixing `Too many open files` issue
 
 ```

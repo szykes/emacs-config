@@ -12,6 +12,15 @@
       t
     nil))
 
+;;; Making gcc available
+(when (eq system-type 'darwin)
+  (setenv "PATH" (concat (expand-file-name "~/.emacs.d/bin:") (getenv "PATH")))
+  (add-to-list 'exec-path (expand-file-name "~/.emacs.d/bin"))
+  ;; Point libgccjit to the Homebrew gcc-15 libraries
+  (setenv "LIBRARY_PATH"
+    (concat "/opt/homebrew/lib/gcc/15:/opt/homebrew/lib:"
+      (or (getenv "LIBRARY_PATH") ""))))
+
 ;;; package & file
 
 (require 'package)
