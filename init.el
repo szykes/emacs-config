@@ -104,13 +104,16 @@
 (show-paren-mode 1)
 (defvar show-paren-delay 0)
 
-(defvar ivy-re-builders-alist
+(require 'flx)
+
+(setq ivy-re-builders-alist
       '((swiper . ivy--regex-plus)
         (t      . ivy--regex-fuzzy)))
 
-(ivy-mode 1)
-(defvar ivy-use-virtual-buffers t)
+(setq ivy-use-virtual-buffers t)
 (setq enable-recursive-minibuffers t)
+
+(ivy-mode 1)
 
 ;; amx is installed and it provides history based listing of counsel-M-x. No config is required.
 
