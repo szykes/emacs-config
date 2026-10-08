@@ -456,6 +456,11 @@ Otherwise `c-or-c++-mode' decides."
 (eval-after-load 'flycheck
   '(add-hook 'flycheck-mode-hook #'flycheck-golangci-lint-setup))
 
+(with-eval-after-load 'lsp-go
+  ;; Force the setting directly into the LSP custom settings payload
+  (lsp-register-custom-settings
+   '(("gopls.buildFlags" ["-tags=integration"]))))
+
 (add-hook 'go-mode-hook #'lsp-deferred)
 
 ;; https://www.flycheck.org/en/latest/languages.html#go
