@@ -33,8 +33,8 @@
          flycheck-pycheckers flycheck-yang gn-mode go-mode groovy-mode
          helpful ivy json-mode kubedoc kubernetes lice lsp-ivy
          lsp-mode lsp-pyright lsp-ui magit nlinum projectile
-         protobuf-mode python-mode rg swiper transient which-key
-         yaml-mode yang-mode yasnippet ztree))
+         protobuf-mode python-mode rg swiper terraform-mode transient
+         which-key yaml-mode yang-mode yasnippet ztree))
  '(warning-suppress-log-types '((comp)))
  '(warning-suppress-types '((auto-save) (comp))))
 (custom-set-faces
