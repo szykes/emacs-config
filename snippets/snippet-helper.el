@@ -1,4 +1,4 @@
-;;; snippet-helper.el --- functions for more smart snippets
+;;; snippet-helper.el --- functions for more smart snippets ;; -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 

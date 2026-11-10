@@ -1,4 +1,4 @@
-;;; custom.el --- custem sets are stored here
+;;; custom.el --- custem sets are stored here ;; -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 ;; Do _not_ modify!
